@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-speech-recognition-ai"
+version = "0.1.0"
+description = "Speech recognition toolkit and CLI using the SpeechRecognition library (Google Web Speech API by default)"
+authors = [
+  { name = "Mobin Yousefi", email = "" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+dependencies = [
+  "SpeechRecognition>=3.10.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/mobinyousefi-cs/python-speech-recognition-ai"
+Repository = "https://github.com/mobinyousefi-cs/python-speech-recognition-ai"
+
+[project.scripts]
+sr-cli = "speech_recognition_ai.cli:main"
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+select = [
+  "E", "F", "W", # pycodestyle + pyflakes
+  "I",             # isort
+  "B",             # flake8-bugbear
+]
+ignore = [
+  "E203",          # black compatibility for slicing
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["speech_recognition_ai"]
+force-sort-within-sections = true
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["src"]
